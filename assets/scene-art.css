@@ -1,0 +1,428 @@
+/* Supplied room, tower and resting-cat artwork. Loaded after the legacy sheet. */
+.room {
+  background: #efe0c5 url("room-background.png") center / 100% 100% no-repeat !important;
+}
+
+.room > .rug {
+  display: none !important;
+}
+
+.room > .window {
+  display: block !important;
+  left: -2.5% !important;
+  top: -4.5% !important;
+  width: 47% !important;
+  height: 49% !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  z-index: 1 !important;
+}
+
+.room > .window::before,
+.room > .window::after,
+.room > .window span {
+  display: none !important;
+}
+
+.scratch {
+  right: -1% !important;
+  top: 1.5% !important;
+  width: 31% !important;
+  height: 55% !important;
+  z-index: 2 !important;
+}
+
+.scratch i,
+.scratch.worn i,
+.scratch.scratched i {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.scratch > span {
+  display: none !important;
+}
+
+.cat.tower-resting {
+  width: 215px !important;
+  height: 92px !important;
+  z-index: 5 !important;
+}
+
+.cat.tower-resting::before {
+  background-image: url("lying-cats-sprites.png") !important;
+  background-size: 300% 100% !important;
+  filter: drop-shadow(0 5px 0 #0002) !important;
+  animation: cat-rest-breathe 1.6s steps(2) infinite !important;
+  transform: none !important;
+}
+
+.cat.tower-resting[data-id="naicha"]::before { background-position: 50% 0 !important; }
+.cat.tower-resting[data-id="zhima"]::before { background-position: 100% 0 !important; }
+.cat.tower-resting[data-id="nuomi"]::before { background-position: 0 0 !important; }
+.cat.tower-resting .cat-name { left: 82px !important; top: 84px !important; }
+.cat.tower-resting .signal { left: 98px !important; top: -12px !important; }
+
+@keyframes cat-rest-breathe {
+  50% { transform: translateY(2px); }
+}
+
+.cat.window-sitting {
+  width: 178px !important;
+  height: 178px !important;
+  z-index: 4 !important;
+}
+
+.cat.window-sitting::before {
+  background-image: url("sitting-cats-sprites.png") !important;
+  background-size: 300% 200% !important;
+  animation: window-cat-breathe 1.4s steps(2) infinite !important;
+  filter: drop-shadow(0 5px 0 #0002) !important;
+}
+
+.cat.window-sitting[data-id="naicha"]::before { background-position-x: 50% !important; }
+.cat.window-sitting[data-id="zhima"]::before { background-position-x: 100% !important; }
+.cat.window-sitting[data-id="nuomi"]::before { background-position-x: 0 !important; }
+.cat.window-sitting.facing-front::before { background-position-y: 0 !important; }
+.cat.window-sitting.facing-back::before { background-position-y: 100% !important; }
+.cat.window-sitting .cat-name { left: 64px !important; top: 166px !important; }
+.cat.window-sitting .signal { left: 78px !important; top: -4px !important; }
+
+@keyframes window-cat-breathe {
+  50% { transform: translateY(-2px); }
+}
+
+@media (max-width: 1100px) {
+  .scratch { width: 31% !important; height: 55% !important; }
+  .cat.tower-resting { width: 180px !important; height: 78px !important; }
+}
+
+/* Clean scene layering and proximity-only food refill */
+.bowl,.bowl:hover,.bowl:focus,.bowl:focus-visible,.bowl:active {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  filter: none !important;
+}
+.bowl::after { display: none !important; }
+.bowl { z-index: 2 !important; }
+.bowl i,.bowl:hover i,.bowl:focus i,.bowl:focus-visible i,.bowl:active i,
+.bowl.empty i {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  filter: none !important;
+  animation: none !important;
+}
+.bowl i::before,.bowl i::after { content: none !important; display: none !important; }
+.object > span,.cat-name { display: none !important; }
+.cat { z-index: 4 !important; }
+.toy-ball { z-index: 5 !important; }
+
+.food-bags {
+  left: 1% !important;
+  bottom: 17% !important;
+  z-index: 6 !important;
+}
+.food-bags button,
+.food-bags button:hover,
+.food-bags button:focus,
+.food-bags button:active {
+  width: 92px !important;
+  height: 98px !important;
+  padding: 0 !important;
+  background: transparent url("cat-food-bag.png") center / contain no-repeat !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  clip-path: none !important;
+  transform: none !important;
+  filter: drop-shadow(0 5px 0 #0002) !important;
+}
+.food-bags button::before,.food-bags button::after { display: none !important; }
+.food-bags button:disabled { opacity: 1 !important; cursor: default !important; }
+.food-bags.pouring { animation: pour-food .75s steps(4); transform-origin: 75% 90%; }
+@keyframes pour-food { 45%,70% { transform: translate(72px,26px) rotate(48deg); } }
+.bowl.refilled i em { animation: bowl-refill .75s steps(2); }
+@keyframes bowl-refill { 45% { filter: drop-shadow(0 5px 0 #0002) brightness(1.35); transform: translateY(-3px); } }
+
+.control-panel .end-day,
+.control-panel .end-day:hover,
+.control-panel .end-day:focus,
+.control-panel .end-day:active {
+  transform: none !important;
+  rotate: 0deg !important;
+  clip-path: none !important;
+  font-family: "Avenir Next","PingFang SC",system-ui,sans-serif !important;
+}
+
+/* One live status card per cat */
+.control-panel {
+  width: 330px !important;
+  padding: 14px !important;
+  overflow-y: auto !important;
+}
+
+.play-area { grid-template-columns: minmax(0,1fr) 330px !important; }
+.control-panel .feedback { display: none !important; }
+
+.cat-status-list {
+  display: grid !important;
+  gap: 12px;
+}
+
+.cat-status {
+  display: block;
+  width: 100%;
+  padding: 12px 13px 14px;
+  color: #242936;
+  background: #fffaf0;
+  border: 3px solid #263240;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 #263240;
+  cursor: pointer;
+  text-align: left;
+  image-rendering: pixelated;
+}
+
+.cat-status.active {
+  outline: 0 !important;
+  background: #f6f0e5;
+}
+
+.cat-status header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.cat-status header span {
+  letter-spacing: 5px;
+}
+.cat-identity { display: flex; align-items: center; gap: 8px; letter-spacing: 0 !important; }
+.cat-avatar { display: block; width: 34px; height: 34px; flex: 0 0 34px; background: url("three-cats-sprites.png") 0 0 / 300% 100% no-repeat; image-rendering: pixelated; }
+.cat-status[data-id="naicha"] .cat-avatar { background-position: 0 0; }
+.cat-status[data-id="zhima"] .cat-avatar { background-position: 50% 0; }
+.cat-status[data-id="nuomi"] .cat-avatar { background-position: 100% 0; }
+.affection-value{color:#d96f8d;font:900 13px "Courier New",monospace}.cat-status.value-up{animation:status-up .55s steps(2)}.cat-status.value-down{animation:status-down .55s steps(2)}
+@keyframes status-up{50%{background:#dff3dc!important;box-shadow:7px 7px 0 #68ae78!important}}@keyframes status-down{50%{background:#ffd8d2!important;box-shadow:7px 7px 0 #d65f55!important}}
+
+.status-row {
+  position: relative;
+  margin-top: 7px;
+}
+
+.status-row label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.status-row label strong { font-size: 12px; }
+.status-row label small { color: #adb2b7; font: 700 9px "Courier New", monospace; letter-spacing: .12em; }
+.status-row i { display: block; height: 9px; margin-top: 3px; background: #e1e3e3; overflow: hidden; clip-path: polygon(2% 0,98% 0,100% 30%,100% 70%,98% 100%,2% 100%,0 70%,0 30%); }
+.status-row i span { display: block; height: 100%; transition: width .35s; }
+.status-row em { position: absolute; right: 4px; bottom: -2px; font: 10px monospace; font-style: normal; letter-spacing: -2px; text-shadow: 1px 1px #fff; }
+.status-row.metric-hunger i span { background: #70bd91; }.status-row.metric-hunger em { color: #56ad83; }
+.status-row.metric-trust i span { background: #df8da3; }.status-row.metric-trust em { color: #db7895; }
+.status-row.metric-affection i span { background: #df8da3; }
+.status-row.metric-stress i span { background: #83a9d4; }.status-row.metric-stress em { color: #6f9dcc; }
+.status-row.metric-food i span { background: #f2be48; }.status-row.metric-food em { color: #ecae28; }
+.status-row.metric-litter i span { background: #9d78cb; }.status-row.metric-litter em { color: #956ac5; }
+
+/* Supplied draggable teaser wand */
+.toy-ball,
+.toy-ball.dragging {
+  width: 150px !important;
+  height: 156px !important;
+  padding: 0 !important;
+  background: transparent url("teaser-wand.png") center / contain no-repeat !important;
+  border: 0 !important;
+  border-style: none !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  filter: drop-shadow(0 6px 0 #0002) !important;
+  transform: translate(-50%,-50%) rotate(var(--wand-angle)) !important;
+  transform-origin: 50% 72% !important;
+  touch-action: none;
+}
+
+.toy-ball::before,.toy-ball::after { content: none !important; display: none !important; border: 0 !important; outline: 0 !important; }
+.toy-ball.dragging { transform: translate(-50%,-50%) rotate(var(--wand-angle)) scale(1.08) !important; cursor: grabbing; }
+.toy-ball:hover,.toy-ball:focus,.toy-ball:focus-visible,.toy-ball:active { border: 0 !important; outline: none !important; outline-width: 0 !important; outline-offset: 0 !important; box-shadow: none !important; }
+
+.cat.hiding,.cat.hiding:nth-child(n) {
+  opacity: 1 !important;
+  filter: none !important;
+}
+.cat.hiding::before { opacity: 1 !important; filter: drop-shadow(0 7px 0 #0002) !important; }
+.cat,.cat::before,.cat.hiding,.cat.hiding::before { opacity: 1 !important; }
+.cat.selected { filter: none !important; outline: 0 !important; }
+.cat.selected::after { content: none !important; display: none !important; }
+.cat.needs-pet::before { animation: needs-pet-glow 1s steps(3) infinite !important; }
+@keyframes needs-pet-glow{50%{filter:drop-shadow(0 0 5px #ff91b8) drop-shadow(0 0 13px #ff91b8) drop-shadow(0 7px 0 #0002)}}
+.cat .signal:empty { display: none !important; }
+.cat.tower-resting { transform: translate(-50%,-42%) !important; }
+.litter { z-index: 3 !important; }
+.litter,.litter:hover,.litter:focus,.litter:focus-visible,.litter:active,
+.litter.dirty,.litter.cat-using,.litter.ready-clean {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  filter: none !important;
+  transform: none !important;
+}
+.litter::after { content: none !important; display: none !important; }
+.cat.in-litter { z-index: 9 !important; width: 135px !important; height: 135px !important; }
+.cat.in-litter::before { visibility: visible !important; opacity: 1 !important; background-image: url("sitting-cats-sprites.png") !important; background-size: 300% 200% !important; background-position-y: 0 !important; filter: drop-shadow(0 4px 0 #0002) !important; }
+.cat.in-litter::before{animation:litter-cat-sit .8s steps(2) infinite!important}
+@keyframes litter-cat-sit{50%{transform:translateY(3px)}}
+.cat.in-litter[data-id="naicha"]::before { background-position-x: 50% !important; }
+.cat.in-litter[data-id="zhima"]::before { background-position-x: 100% !important; }
+.cat.in-litter[data-id="nuomi"]::before { background-position-x: 0 !important; }
+.cat.in-litter .signal { visibility: hidden !important; }
+.litter.cat-using i::before { animation: none !important; background-position: 0 0 !important; }
+.litter.cat-using { pointer-events: none !important; }
+.litter.ready-clean { cursor: pointer !important; }
+.litter.ready-clean i { filter: drop-shadow(0 5px 0 #0002) brightness(1.08) !important; }
+.litter i,.litter:hover i,.litter:focus i,.litter:active i {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
+  outline-color: transparent !important;
+  filter: none !important;
+}
+.litter,.litter * { -webkit-tap-highlight-color: transparent !important; }
+.litter.dirty:not(.scooping) i::before { filter: sepia(.48) saturate(1.7) brightness(.72) !important; }
+.litter.ready-clean:not(.scooping) i::before { animation: litter-needs-clean .8s steps(2) infinite !important; }
+.litter.clean-flash i::before { animation: litter-clean-flash .7s steps(3) !important; }
+@keyframes litter-needs-clean{50%{transform:translateX(3px);filter:sepia(.6) saturate(2) brightness(.62)}}
+@keyframes litter-clean-flash{40%{transform:translateY(-5px) scale(1.05);filter:brightness(1.55) saturate(.7)}}
+
+.cat.floor-resting {
+  width: 215px !important;
+  height: 92px !important;
+}
+.cat.floor-resting::before {
+  background-image: url("lying-cats-sprites.png") !important;
+  background-size: 300% 100% !important;
+  animation: cat-rest-breathe 1.6s steps(2) infinite !important;
+  filter: drop-shadow(0 5px 0 #0002) !important;
+}
+.cat.floor-resting[data-id="naicha"]::before { background-position: 50% 0 !important; }
+.cat.floor-resting[data-id="zhima"]::before { background-position: 100% 0 !important; }
+.cat.floor-resting[data-id="nuomi"]::before { background-position: 0 0 !important; }
+.cat.floor-resting .cat-name { left: 82px !important; top: 84px !important; }
+.cat.floor-resting .signal { left: 98px !important; top: -12px !important; }
+.cat.room-sitting{width:160px!important;height:160px!important}.cat.room-sitting::before{background-image:url("sitting-cats-sprites.png")!important;background-size:300% 200%!important;background-position-y:0!important;animation:window-cat-breathe 1.4s steps(2) infinite!important}.cat.room-sitting[data-id="naicha"]::before{background-position-x:50%!important}.cat.room-sitting[data-id="zhima"]::before{background-position-x:100%!important}.cat.room-sitting[data-id="nuomi"]::before{background-position-x:0!important}
+.cat.following-wand::before{background-image:url("three-cats-sprites.png")!important;background-size:300% 100%!important;animation:none!important;transform:rotate(var(--look-angle,0deg))!important;transform-origin:50% 35%!important}.cat.following-wand.wand-right::before{transform:scaleX(-1) rotate(var(--look-angle,0deg))!important}.cat.following-wand[data-id="naicha"]::before{background-position:0 0!important}.cat.following-wand[data-id="zhima"]::before{background-position:50% 0!important}.cat.following-wand[data-id="nuomi"]::before{background-position:100% 0!important}
+
+@media (max-width: 1100px) {
+  .control-panel { width: 280px !important; }
+  .play-area { grid-template-columns: minmax(0,1fr) 280px !important; }
+  .toy-ball,.toy-ball.dragging { width: 120px !important; height: 125px !important; }
+}
+
+/* Pixel-art entry screen */
+.game-shell:has(.brief-panel:not(.hidden)){padding:0!important;background:#eadac5 url("room-background.png") center/cover no-repeat}
+.brief-panel{position:relative;max-width:none!important;width:100%;height:100%!important;padding:7vh 12vw 10vh;justify-content:center!important;background:#fff8ec4d}
+.brief-title{text-align:center;text-shadow:0 2px #fff8ec}.brief-title .eyebrow{margin:0 0 8px;color:#e97a61;letter-spacing:.12em}.brief-title .eyebrow span{color:#29303a}
+.brief-panel .brief-title h1{margin:0!important;color:#252833;font:900 clamp(42px,5vw,76px)/1 "Courier New",monospace!important;letter-spacing:-.07em}
+.brief-title>small{display:block;margin-top:12px;color:#8c7f78;font:700 10px "Courier New",monospace;letter-spacing:.65em}
+.brief-panel .preset-row{max-width:1020px;margin:44px auto 25px!important;gap:16px!important}
+.brief-panel .preset{min-height:84px;padding:12px 20px!important;display:grid!important;grid-template-columns:50px 68px 1fr 34px;align-items:center;gap:8px!important;background:#fffaf0e8!important;border:3px solid #292a31!important;border-radius:0!important;box-shadow:6px 6px 0 #292a31!important;transform:none!important}
+.brief-panel .preset.active{background:#fff2dc!important;border-color:#ef775f!important;box-shadow:6px 6px 0 #292a31!important}
+.brief-panel .preset b{color:#ee745d!important;font:900 25px Georgia,serif!important}.brief-panel .preset span{color:#272b35;font:900 12px "Courier New",monospace;text-align:left}.brief-panel .preset em{color:#d9bea4;font-style:normal;font-size:24px}
+.preset-cat{display:block;width:60px;height:55px;background:url("three-cats-sprites.png") 0 0/300% 100% no-repeat;image-rendering:pixelated}.preset-cat.cat-one{background-position:100% 0}.preset-cat.cat-two{background-position:0 0}.preset-cat.cat-three{background-position:50% 0}
+.brief-panel #startBtn{padding:14px 29px!important;color:#252833!important;background:#ffd458!important;border:4px solid #252833!important;border-radius:0!important;box-shadow:5px 5px 0 #252833!important;transform:none!important;font:900 14px "Courier New",monospace!important;letter-spacing:.08em}.brief-panel #startBtn:hover{transform:translate(-2px,-2px)!important;box-shadow:7px 7px 0 #252833!important}
+@media(max-width:800px){.brief-panel{padding:5vh 20px}.brief-panel .preset-row{grid-template-columns:1fr!important;margin-top:25px!important}}
+
+/* Spacious room composition: activity stays in the open centre, utilities frame it. */
+.game-shell{padding:18px 22px 24px!important}
+.play-area{grid-template-columns:minmax(0,1fr) 292px!important;gap:18px!important}
+.room{min-width:0;min-height:0;border-radius:22px!important;background-position:center!important;background-size:cover!important;box-shadow:inset 0 0 0 8px #fffaf0!important}
+.room>.rug{display:block!important;left:27%!important;top:39%!important;width:49%!important;height:39%!important;background:#91acd2!important;border-radius:50%!important;box-shadow:inset 0 0 0 8px #b9cae2!important;opacity:.82;pointer-events:none;z-index:1!important}
+.room>.window{left:5%!important;top:4%!important;width:34%!important;height:36%!important}
+.quiet-corner{left:5%!important;top:4%!important;width:34%!important;height:36%!important}
+.scratch{right:1.5%!important;top:1.5%!important;width:29%!important;height:51%!important}
+.bowl{left:4.5%!important;bottom:7%!important}
+.food-bags{left:2.2%!important;bottom:18.5%!important}
+.litter{right:4%!important;bottom:4.5%!important}
+.control-panel{width:292px!important;padding:14px!important;border-radius:18px!important}
+.cat-status-list{gap:9px!important}
+.cat-status{padding:9px 11px 11px!important}
+
+@media(max-width:1100px){
+  .play-area{grid-template-columns:minmax(0,1fr) 260px!important;gap:12px!important}
+  .control-panel{width:260px!important}
+  .room>.rug{left:25%!important;width:52%!important}
+  .bowl i em{flex-basis:112px!important;width:112px!important}
+  .litter i{width:180px!important;height:120px!important}
+}
+
+/* Match the editorial site palette and typography. */
+.game-page,.game-page button{font-family:"Avenir Next","PingFang SC",system-ui,sans-serif!important;color:#292723}
+.game-page{background:#f7f0df!important}
+.site-header,.control-panel,.cat-status{background:#fffaf0!important}
+.brief-panel{font-family:"Avenir Next","PingFang SC",system-ui,sans-serif!important;background:#f7f0df80!important}
+.brief-panel .brief-title h1{font-family:Georgia,"Times New Roman",serif!important;font-weight:500!important;letter-spacing:-.045em!important}
+.brief-title>small,.brief-panel .preset span,.brief-panel #startBtn{font-family:"Avenir Next","PingFang SC",system-ui,sans-serif!important}
+.brief-panel .preset{background:#fffaf0e8!important;border:1px solid #292723!important;box-shadow:5px 5px 0 #292723!important}
+.brief-panel .preset.active{background:#fff4d4!important;border-color:#e86f3d!important}
+.brief-panel #startBtn{background:#efb44a!important;border:1px solid #292723!important;box-shadow:5px 5px 0 #292723!important}
+
+/* Open floor plan: no overlay rug; feeding station sits below the window. */
+.room>.rug{display:none!important}
+.bowl{left:9%!important;top:46%!important;bottom:auto!important}
+.food-bags{left:38%!important;top:46%!important;bottom:auto!important;z-index:2!important}
+.cat{z-index:6!important}
+.toy-ball{z-index:8!important}
+.cat.in-litter{z-index:9!important}
+
+/* The litter box always uses the clean, frameless base sprite. */
+.litter,.litter:hover,.litter:focus,.litter:focus-visible,.litter:active,
+.litter.dirty,.litter.ready-clean,.litter.cat-using{
+  background:transparent!important;border:0!important;outline:0!important;
+  box-shadow:none!important;filter:none!important;border-radius:0!important;
+}
+.litter::before,.litter::after,.litter.ready-clean::before,.litter.ready-clean::after{content:none!important;display:none!important}
+.litter i,.litter.ready-clean i,.litter.dirty i{background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;filter:none!important}
+.litter i::before,.litter.dirty:not(.scooping) i::before,.litter.ready-clean:not(.scooping) i::before{
+  background-position:0 0!important;animation:none!important;filter:drop-shadow(0 5px 0 #0002)!important;
+}
+.litter.clean-flash i::before{animation:litter-clean-flash .7s steps(3)!important}
+.food-bags.pouring{animation:pour-food-left .75s steps(4)!important;transform-origin:20% 90%!important}
+@keyframes pour-food-left{45%,70%{transform:translate(-74px,22px) rotate(-48deg)}}
+
+/* Large state changes should read clearly at a glance. */
+.status-row i span{transition:width .65s steps(6)!important}
+.cat-status.value-up,.cat-status.value-down{animation-duration:.8s!important}

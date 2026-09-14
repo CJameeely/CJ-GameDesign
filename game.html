@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Play CAT</title><link rel="stylesheet" href="assets/style.css?v=room-tower-rest"><link rel="stylesheet" href="assets/scene-art.css?v=litter-loop-visible"></head>
+<body class="game-page">
+  <header class="site-header"><a class="brand" href="index.html">CAT <span>BACK</span></a><div class="game-top"><span id="dayLabel">DAY 1</span><span id="actionsLabel">⚡ 2/2</span><button id="soundBtn" class="icon-btn" aria-label="Toggle sound">SOUND ON</button></div></header>
+  <main class="game-shell">
+    <section class="brief-panel" id="briefPanel">
+      <div class="brief-title"><p class="eyebrow">CAT <span>🐾</span></p><h1>LIVE TOGETHER</h1><small>READ · CARE · CONNECT</small></div>
+      <div class="preset-row">
+        <button class="preset active" data-level="1"><b>01</b><i class="preset-cat cat-one"></i><span>1 CAT</span><em>🐾</em></button>
+        <button class="preset" data-level="2"><b>02</b><i class="preset-cat cat-two"></i><span>2 CATS</span><em>🐾</em></button>
+        <button class="preset" data-level="3"><b>03</b><i class="preset-cat cat-three"></i><span>3 CATS</span><em>🐾</em></button>
+      </div><button id="startBtn" class="button primary">START ›</button>
+    </section>
+
+    <section class="play-area hidden" id="playArea">
+      <div class="room" id="room">
+        <div class="window"><span></span></div><div class="rug"></div>
+        <button class="object hotspot bowl" id="bowl" data-action="feed" aria-label="Feed the cats"><i></i><span>BOWLS<small>FEED</small></span></button>
+        <button class="object hotspot litter" id="litter" data-action="clean" aria-label="Clean the litter box"><i>···</i><span>LITTER<small>CLEAN</small></span></button>
+        <button class="object hotspot scratch" id="scratch" data-action="play" aria-label="Play by the cat tower"><i></i><span>TOWER<small>PLAY</small></span></button>
+        <button class="toy-ball" id="toyBall" aria-label="Drag the teaser wand"></button>
+        <div class="food-bags" id="foodBags"></div>
+        <button class="object hotspot quiet-corner" id="quietCorner" data-action="space" aria-label="Give the cat quiet space by the window"><i>☀</i><span>WINDOW<small>SPACE</small></span></button>
+        <div id="cats"></div>
+        <div class="room-note hidden" id="roomNote"></div>
+      </div>
+      <aside class="control-panel">
+        <div class="day-progress"><span id="dayProgress"></span></div>
+        <div class="cat-status-list" id="catStatusList"></div>
+        <div class="feedback" id="feedback" aria-live="polite"><b>…</b><p></p></div>
+        <div class="hidden" id="nextStep"></div>
+        <button id="endDayBtn" class="button end-day">END</button>
+      </aside>
+    </section>
+  </main>
+  <div class="modal hidden" id="resultModal"><div class="modal-card"><p class="eyebrow" id="resultEyebrow">COMPLETE</p><h2 id="resultTitle"></h2><p id="resultText"></p><div id="catResults" class="cat-results"></div><button id="retryBtn" class="button primary">RETRY</button><a href="index.html" class="button ghost">BACK</a></div></div>
+  <script src="assets/game.js"></script>
+</body></html>
